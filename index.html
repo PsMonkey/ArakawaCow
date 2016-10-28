@@ -2,9 +2,168 @@
 <head>
 	<meta charset="utf-8">
 	<title>鋼鍊孤本自救會</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
 </head>
 <body>
+
+<h1>自救會目前狀態：</h1>
+<h3>統計時間：2016.10.28 21:xx</h3>
+<h3>總人數：35 人</h3>
+<table width="98%">
+	<tr>
+		<td colspan="2">
+			<canvas id="amountChart" width="400" height="100"></canvas>
+		</td>
+	<tr>
+		<td width="50%">
+			<canvas id="hardbackChart" width="400" height="200"></canvas>
+		</td>
+		<td width="50%">
+			<canvas id="anonymousChart" width="400" height="200"></canvas>
+		</td>
+	<tr>
+</table>
+
+<hr style="margin: 40px 10px" />
+
+<h1>我要加入自救會！</h1>
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeQrDP_duy2q7WPeh1PEnvhNjDSnmj4CHdUl68GkBZfskhbOA/viewform?embedded=true" 
-	width="100%" height="98%" frameborder="0" marginheight="0" marginwidth="0">載入中…
+	width="90%" height="2050px" frameborder="0" marginheight="0" marginwidth="0">載入中…
 </iframe>
 </html>
+
+<script>
+var amountData = [8, 6, 2, 0, 1, 14];
+var hardbackData = [20, 7, 6, 2];
+var anonymousData = [33, 2];
+
+Chart.defaults.global.defaultFontSize = 16;
+var amountChart = new Chart(
+	document.getElementById("amountChart"), 
+	{
+		type: 'bar',
+		data: {
+			labels: ["1 本 [淚]", "2～5 本", "5～10 本", "10～15 本", "15～26 本", "一整套"],
+			datasets: [{
+				data: amountData,
+				backgroundColor: [
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)'
+				],
+				borderColor: [
+					'rgba(255,99,132,1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+				],
+				borderWidth: 1
+			}]
+		},
+		options: {
+			title: {
+				display: true,
+				text: '整體數量需求'
+			},
+			legend: {
+				display: false
+			},
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero:true
+					}
+				}]
+			}
+		}
+	}
+);
+
+var hardbackChart = new Chart(
+	document.getElementById("hardbackChart"), 
+	{
+		type: 'pie',
+		data: {
+			labels: ["絕對會", "應該會", "有可能", "有難度"],
+			datasets: [{
+				data: hardbackData,
+				backgroundColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+				],
+				borderColor: [
+					'rgba(255,99,132,1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+				],
+				borderWidth: 0,
+			}]
+		},
+		options: {
+			title: {
+				display: true,
+				text: "精裝版購買意願",
+				position: "top",
+			},
+			legend: {
+				position: "bottom",
+				fullWidth: false,
+			}
+		}
+	}
+);
+
+var anonymousChart = new Chart(
+	document.getElementById("anonymousChart"), 
+	{
+		type: 'pie',
+		data: {
+			labels: ["是", "否"],
+			datasets: [{
+				data: anonymousData,
+				backgroundColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+				],
+				borderColor: [
+					'rgba(255,99,132,1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+				],
+				borderWidth: 0,
+			}]
+		},
+		options: {
+			title: {
+				display: true,
+				text: "有留下聯絡資料",
+				position: "top",
+			},
+			legend: {
+				position: "bottom",
+				fullWidth: false,
+			},
+			rotation: Math.PI,
+		}
+	}
+);
+</script>
